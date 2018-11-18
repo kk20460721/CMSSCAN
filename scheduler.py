@@ -12,11 +12,11 @@ FROM_EMAIL = ''
 TO_EMAIL = ''
 
 # SERVER SETTINGS
-SERVER = 'http://127.0.0.1:7070'
+SERVER = 'https://cmsscan.herokuapp.com:80'
 
 # SCAN SITES
 WORDPRESS_SITES = []
-DRUPAL_SITES = []
+DRUPAL_SITES = 'http://theosho.com'
 JOOMLA_SITES = []
 VBULLETIN_SITES = []
 
@@ -60,7 +60,7 @@ def start_scan(url, cms):
     logger.addHandler(hdlr)
     logger.setLevel(logging.INFO)
     data = {"url": url, "cms": cms}
-    resp = requests.post("http://127.0.0.1:7070/scan",
+    resp = requests.post("https://cmsscan.herokuapp.com:80",
                          data=data, timeout=10)
     if resp.status_code == 200:
         logger.info(resp.json())
